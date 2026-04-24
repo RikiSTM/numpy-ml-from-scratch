@@ -1,0 +1,12 @@
+# Mac files
+.DS_Store
+
+# Poetry / Virtual Env
+.venv/
+bin/
+lib/
+include/
+
+# Python cache
+__pycache__/
+*.py[cod]
