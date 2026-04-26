@@ -99,3 +99,49 @@ slice_subject = scores[2,:]
 print(slice_subject)
 student_3_max = np.max(slice_subject, axis=0)
 print(student_3_max)
+
+
+# --- PILLAR 6: DOT PRODUCT (The ML Engine) ---
+
+X = np.array([[100, 3], 
+              [150, 4]])
+
+W = np.array([[10], 
+              [50]])
+
+predictions = X @ W
+
+print("--- Pillar 6: Dot Product ---")
+print(f"Shape X: {X.shape}")
+print(f"Shape W: {W.shape}")
+print(f"Hasil Prediksi:\n{predictions}")
+print(f"Shape Hasil: {predictions.shape}")
+
+assert predictions.shape == (2, 1), "Error: Dimensi hasil dot product salah!"
+
+# --- EXPERIMENT: MULTIPLE OUTPUTS ---
+X = np.array([[100, 3], 
+              [150, 4]])
+
+W_multi = np.array([[10, 1],  
+                    [50, 2]]) 
+
+multi_preds = X @ W_multi
+
+print("\n--- Multi-Output Dot Product ---")
+print(f"Shape W_multi: {W_multi.shape}")
+print(f"Hasil (Harga, Pajak):\n{multi_preds}")
+print(f"Shape Hasil: {multi_preds.shape}")
+
+assert multi_preds[0, 1] == 106
+
+# --- EXPERIMENT 3: TRANSPOSE (.T) ---
+raw_data = np.array([[100, 150, 120],  
+                        [3, 4, 2]])       
+
+print(f"\nShape Mentah: {raw_data.shape}") 
+X_siap = raw_data.T 
+print(f"Shape Setelah Transpose: {X_siap.shape}") 
+
+final_prediction = raw_data @ W
+print(f"Prediksi dari data transpose:\n{final_prediction}")
