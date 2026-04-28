@@ -52,4 +52,11 @@ class LinearRegression:
         """
         # PILAR 6: Dot Product + Bias
         # Rumus: y_hat = X @ W + b
+        if self.weights is None or self.bias is None:
+            raise RuntimeError(
+                "Model is not trained yet"
+                )
+        
+        
+        
         return np.dot(X, self.weights) + self.bias
