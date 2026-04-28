@@ -56,7 +56,11 @@ class LinearRegression:
             raise RuntimeError(
                 "Model is not trained yet"
                 )
-        
-        
-        
         return np.dot(X, self.weights) + self.bias
+
+    def predict(self, X):
+        """
+        Alias untuk forward pass. 
+        Digunakan setelah model dilatih (fit).
+        """
+        return self.forward(X)
