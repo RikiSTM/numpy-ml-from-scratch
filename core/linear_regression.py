@@ -9,39 +9,39 @@ class LinearRegression:
 
     def fit(self,X, y):
         """
-        X shape: (n_samples, n_features) -> Contoh: (100 rumah, 2 fitur)
-        y shape: (n_samples, 1)          -> Contoh: (100 harga rumah, 1 target)
+        Train the model using Gradient Descent.
+        
+        X shape: (n_samples, n_features) -> e.g., (100 houses, 2 features)
+        y shape: (n_samples, n_targets)  -> e.g., (100 house prices, 1 target)
         """
-        # 1. Baca Dimensi Data
-        # n_samples -> Akan dipakai nanti sbg pembagi rata-rata error
-        # n_features -> Dipakai sbg baris di matriks Weights
+        # 1. Get Data Dimensions
+        # n_samples  -> Used as a divisor for mean gradient calculation
+        # n_features -> Used to determine the number of rows in the Weights matrix
         n_samples, n_features = X.shape
         
-        # 2. Baca Dimensi Target (y) untuk menghindari hard-code
-        # Jika y adalah (100, 1) -> n_targets = 1
-        # Jika y adalah (100, 2) -> n_targets = 2 (Multi-Output)
+        # 2. Get Target Dimensions to prevent hard-coding
+        # Supports Multi-Output Regression (e.g., predicting 2 different values at once)
         n_targets = y.shape[1]
         
-        # 3. Lahirkan Weights dan Bias berdasarkan jumlah fitur
-        # Jika X punya 2 fitur, maka weights jadi (2, 1) berisi angka 0
+        # 3. Initialize Weights and Bias based on feature and target count
+        # Initialized with zeros as the starting point for Gradient Descent
         self.weights = np.zeros((n_features, n_targets))
         self.bias = np.zeros((1, n_targets))
         
-        # --- Sampai sini, kontrak dimensi sudah aman ---
-        # --- FASE 2: TRAINING LOOP (GRADIENT DESCENT) ---
+         # --- PHASE 2: TRAINING LOOP (GRADIENT DESCENT) ---
         for _ in range(self.n_iters):
-            # Step 1: Forward Pass (Coba tebak pakai bobot saat ini)
+            # Step 1: Forward Pass (Predict using current weights)
             y_pred = self.forward(X)
             
-            # Step 2: Hitung Error (Seberapa jauh melesetnya?)
+            # Step 2: Calculate Error (Residuals)
             error = y_pred - y
             
-            # Step 3: Hitung Gradient (Kalkulus Dasar: Cari arah perbaikan)
-            # Di sinilah Transpose (.T) dan n_samples terpakai!
+            # Step 3: Calculate Gradients (Using Partial Derivatives)
+            # Transpose (X.T) is required to align features with errors
             dw = (1 / n_samples) * np.dot(X.T, error)
             db = (1 / n_samples) * np.sum(error, axis=0)
             
-            # Step 4: Update Parameter (Lakukan perbaikan)
+            # Adjust weights in the opposite direction of the gradient
             self.weights -= self.lr * dw
             self.bias -= self.lr * db
         
@@ -50,8 +50,7 @@ class LinearRegression:
         Input X: (n_samples, n_features)
         Output: (n_samples, 1)
         """
-        # PILAR 6: Dot Product + Bias
-        # Rumus: y_hat = X @ W + b
+        # State Validation: Ensure model is trained before inference
         if self.weights is None or self.bias is None:
             raise RuntimeError(
                 "Model is not trained yet"
@@ -60,7 +59,7 @@ class LinearRegression:
 
     def predict(self, X):
         """
-        Alias untuk forward pass. 
-        Digunakan setelah model dilatih (fit).
+        Alias for forward pass.
+        Exposed as a public API for consistency with ML library standards.
         """
         return self.forward(X)
