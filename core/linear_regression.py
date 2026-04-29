@@ -91,3 +91,15 @@ class RidgeRegression(BaseLinearRegression):
         """
         return self.lambda_param * self.weights
     
+
+class LassoRegression(BaseLinearRegression):
+    def __init__(self, learning_rate=0.01, n_iterations=1000, lambda_param=0.1):
+        super().__init__(learning_rate, n_iterations)
+        self.lambda_param = lambda_param
+
+    def _get_penalty_derivative(self):
+        """
+        Calculate L1 (Lasso) penalty derivative.
+        Formula: lambda * sign(weights)
+        """
+        return self.lambda_param * np.sign(self.weights)
