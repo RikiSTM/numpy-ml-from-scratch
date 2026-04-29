@@ -1,11 +1,19 @@
 import numpy as np
 
-class LinearRegression:
+class BaseLinearRegression:
     def __init__(self,learning_rate=0.01,n_iterations=1000):
         self.lr = learning_rate
         self.n_iters = n_iterations
         self.weights = None
         self.bias = None
+        
+    def _get_penalty_derivative(self):
+        """
+        Base method for regularization penalty.
+        To be overridden by child classes (L1/L2).
+        Returns 0 for standard Linear Regression.
+        """
+        return 0
 
     def fit(self,X, y):
         """
@@ -41,6 +49,10 @@ class LinearRegression:
             dw = (1 / n_samples) * np.dot(X.T, error)
             db = (1 / n_samples) * np.sum(error, axis=0)
             
+            # Injecting the penalty cleanly (Polymorphism)
+            # This is where L1 or L2 will modify the gradient
+            dw += self._get_penalty_derivative()
+            
             # Adjust weights in the opposite direction of the gradient
             self.weights -= self.lr * dw
             self.bias -= self.lr * db
@@ -63,3 +75,19 @@ class LinearRegression:
         Exposed as a public API for consistency with ML library standards.
         """
         return self.forward(X)
+    
+
+
+class RidgeRegression(BaseLinearRegression):
+    def __init__(self, learning_rate=0.01, n_iterations=1000, lambda_param=0.1):
+        # Call the parent's initialization
+        super().__init__(learning_rate, n_iterations)
+        self.lambda_param = lambda_param
+        
+    def _get_penalty_derivative(self):
+        """
+        Calculate L2 (Ridge) penalty derivative.
+        Formula: lambda * weights
+        """
+        return self.lambda_param * self.weights
+    
