@@ -1,5 +1,5 @@
 import numpy as np
-from core.linear_regression import LinearRegression
+from core.linear_regression import BaseLinearRegression
 
 def test_training_process():
     # 1. PREPARE DATA (Synthetic Data)
@@ -8,7 +8,7 @@ def test_training_process():
     y = np.array([[2], [4], [6], [8], [10]], dtype=float)
     
     # 2. INITIALIZE MODEL
-    model = LinearRegression(learning_rate=0.01,n_iterations=1000)
+    model = BaseLinearRegression(learning_rate=0.01,n_iterations=1000)
     print("--- INTEGRATION TEST START ---")
     
     # 3. BEFORE TRAINING (Negative Test)
