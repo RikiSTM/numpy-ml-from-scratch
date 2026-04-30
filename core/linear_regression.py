@@ -29,7 +29,11 @@ class BaseLinearRegression:
         
         # 2. Get Target Dimensions to prevent hard-coding
         # Supports Multi-Output Regression (e.g., predicting 2 different values at once)
+        if len(y.shape) == 1:
+            y = y.reshape(-1, 1)
+        
         n_targets = y.shape[1]
+        self.n_targets = n_targets
         
         # 3. Initialize Weights and Bias based on feature and target count
         # Initialized with zeros as the starting point for Gradient Descent
