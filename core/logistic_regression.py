@@ -8,6 +8,15 @@ class LogisticRegression(BaseLinearRegression):
         Uses np.clip to prevent exponential overflow during np.exp calculation.
         """
         return 1 / (1 + np.exp(-np.clip(z, -250, 250)))
+    
+    def compute_loss(self, y_true, y_pred):
+        """
+        Overrides parent loss to implement Binary Cross-Entropy (Log Loss).
+        """
+        # Clip values to avoid log(0) which results in NaN errors
+        epsilon = 1e-15
+        y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
+        return -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
 
     def forward(self, X):
         """

@@ -14,6 +14,14 @@ class BaseLinearRegression:
         Returns 0 for standard Linear Regression.
         """
         return 0
+    
+    def compute_loss(self, y_true, y_pred):
+        """
+        Calculate the Mean Squared Error.
+        y_true: Ground truth (actual labels)
+        y_pred: Predicted values from model
+        """
+        return np.mean((y_true - y_pred)**2)
 
     def fit(self,X, y):
         """
@@ -41,9 +49,15 @@ class BaseLinearRegression:
         self.bias = np.zeros((1, n_targets))
         
          # --- PHASE 2: TRAINING LOOP (GRADIENT DESCENT) ---
-        for _ in range(self.n_iters):
+        for i in range(self.n_iters):
             # Step 1: Forward Pass (Predict using current weights)
             y_pred = self.forward(X)
+            
+            # 📍 DYNAMIC LOSS CHECK (Polymorphism)
+            # Calls MSE for Linear, or Binary Cross-Entropy for Logistic
+            loss = self.compute_loss(y, y_pred)
+            if i % 100 == 0:
+                print(f"Iteration {i}: Loss = {loss:.4f}")
             
             # Step 2: Calculate Error (Residuals)
             error = y_pred - y
