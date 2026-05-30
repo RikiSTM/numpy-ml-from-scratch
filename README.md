@@ -26,3 +26,8 @@ A collection of classical Machine Learning algorithms implemented from the groun
 ```bash
 git clone [https://github.com/RikiSTM/numpy-ml-from-scratch.git](https://github.com/RikiSTM/numpy-ml-from-scratch.git)
 cd numpy-ml-from-scratch
+```
+
+## Author / Contact
+Developed by Riki Let's connect and discuss more about Data Validation, MLOps, and QA Automation:  
+🔗 https://www.linkedin.com/in/riki-s-7ab291b5/
