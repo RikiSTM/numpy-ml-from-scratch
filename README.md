@@ -29,5 +29,10 @@ cd numpy-ml-from-scratch
 ```
 
 ## Author / Contact
-Developed by Riki Let's connect and discuss more about Data Validation, MLOps, and QA Automation:  
-🔗 https://www.linkedin.com/in/riki-s-7ab291b5/
+Riki Sutiaman
+Let's connect and discuss more about ML Engineering, MLOps, and Reliable Automation:
+🔗 https://www.linkedin.com/in/riki-sutiaman-ai-engineer/
+
+<blockquote>
+  🧑‍💻 <a href="https://rikistm.github.io/">Visit my Main Portfolio</a> — RikiSTM (AI/ML Engineer | 10 Years QA Experience)</p>
+</blockquote>
