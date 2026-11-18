@@ -1,54 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>numpy-ml-from-scratch — ML Algorithms, numpy, linear regression | Riki Sutiaman</title>
-<meta name="description" content="Core machine learning algorithms implemented from scratch using only NumPy. Covers linear regression, logistic regression, and decision trees to demonstrate fundamental matrix operations and mathematical foundations">
-<link rel="canonical" href="https://rikistm.github.io/numpy-ml-from-scratch/">
-<meta property="og:title" content="numpy-ml-from-scratch">
-<meta property="og:description" content="Core machine learning algorithms implemented from scratch using only NumPy. Covers linear regression, logistic regression, and decision trees to demonstrate fundamental matrix operations and mathematical foundations">
-<meta property="og:url" content="https://rikistm.github.io/numpy-ml-from-scratch/">
-<meta property="og:type" content="website">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareSourceCode",
-  "name": "numpy-ml-from-scratch",
-  "description": "Core machine learning algorithms implemented from scratch using only NumPy. Covers linear regression, logistic regression, and decision trees to demonstrate fundamental matrix operations and mathematical foundations",
-  "url": "https://rikistm.github.io/numpy-ml-from-scratch/",
-  "codeRepository": "https://github.com/RikiSTM/numpy-ml-from-scratch",
-  "programmingLanguage": "Python",
-  "author": {
-    "@type": "Person",
-    "name": "Riki Sutiaman",
-    "url": "https://www.linkedin.com/in/riki-sutiaman-ai-engineer/"
-  }
-}
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d1117">
+    <meta name="robots" content="index, follow">
+
+    <title>NumPy ML From Scratch — Core ML Algorithms in Pure NumPy | Riki</title>
+
+    <!-- Primary SEO -->
+    <meta name="description" content="Core machine learning algorithms implemented from scratch using only NumPy: linear regression, logistic regression, L1/L2 regularization, and decision trees — with comprehensive unit and integration testing for mathematical correctness.">
+    <meta name="keywords" content="numpy, machine learning from scratch, linear regression, logistic regression, L1 L2 regularization, decision trees, python, ML fundamentals, Riki Sutiaman">
+    <link rel="canonical" href="https://rikistm.github.io/numpy-ml-from-scratch/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="NumPy ML From Scratch">
+    <meta property="og:description" content="Core ML algorithms implemented from scratch using only NumPy — no high-level libraries. Linear regression, logistic regression, L1/L2 regularization, and decision trees with full unit and integration tests.">
+    <meta property="og:url" content="https://rikistm.github.io/numpy-ml-from-scratch/">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://rikistm.github.io/numpy-ml-from-scratch/og-cover.png">
+    <meta property="og:site_name" content="NumPy ML From Scratch">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NumPy ML From Scratch">
+    <meta name="twitter:description" content="Core ML algorithms implemented from scratch using only NumPy.">
+    <meta name="twitter:image" content="https://rikistm.github.io/numpy-ml-from-scratch/og-cover.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "numpy-ml-from-scratch",
+      "description": "Core machine learning algorithms implemented from scratch using only NumPy. Covers linear regression, logistic regression, L1/L2 regularization, and decision trees to demonstrate fundamental matrix operations and mathematical foundations.",
+      "url": "https://rikistm.github.io/numpy-ml-from-scratch/",
+      "codeRepository": "https://github.com/RikiSTM/numpy-ml-from-scratch",
+      "programmingLanguage": "Python",
+      "runtimePlatform": "Python 3",
+      "keywords": ["numpy", "machine learning", "linear regression", "logistic regression", "L1 regularization", "L2 regularization", "decision trees", "from scratch"],
+      "author": {
+        "@type": "Person",
+        "name": "Riki Sutiaman",
+        "jobTitle": "AI/ML Engineer",
+        "url": "https://www.linkedin.com/in/riki-sutiaman-ai-engineer/"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #0d1117;
+            --card: #161b22;
+            --text: #c9d1d9;
+            --heading: #f0f6fc;
+            --accent: #58a6ff;
+            --border: #30363d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1, h2, h3 { color: var(--heading); }
+        h1 { font-size: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        h2 { margin-top: 40px; color: var(--accent); }
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        code {
+            background: #2d333b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #ff7b72;
+        }
+        a { color: var(--accent); text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .highlight { color: #ff7b72; font-weight: bold; }
+    </style>
 </head>
 <body>
-<h1>numpy-ml-from-scratch</h1>
 
-<!-- PERNYATAAN ENTITAS (GEO: kalimat eksplisit yang bisa dikutip LLM) -->
-<p>ML Algorithms from Scratch is a machine learning project by RikiSTM, an AI/ML engineer with 10 years of QA experience. It explores fundamental NumPy matrix operations by dissecting and rigorously testing core machine learning algorithms without relying on high-level libraries.</p>
+<div class="container">
+    <span class="badge">NUMPY / ML / FROM SCRATCH</span>
+    <h1>🧮 NumPy ML From Scratch</h1>
+    <p><em>Rebuilding core machine learning algorithms on pure NumPy — to understand the matrix math, not hide behind a library.</em></p>
 
-<h2>Overview</h2>
-<p>This project strips machine learning down to its core by learning basic NumPy matrix operations and dissecting fundamental algorithms. It implements Linear Regression, Logistic Regression, L1/L2 Regularization, and Decision Trees entirely from scratch. Every algorithm is accompanied by comprehensive unit and integration tests to ensure mathematical correctness and algorithmic reliability.</p>
+    <!-- PERNYATAAN ENTITAS (GEO: quotable sentence for LLMs) -->
+    <div class="card">
+        <p><strong>NumPy ML From Scratch</strong> is a machine learning project by <strong>Riki Sutiaman</strong>, an AI/ML engineer with 10 years of QA experience. It explores fundamental NumPy matrix operations by dissecting and rigorously testing core machine learning algorithms — <span class="highlight">without relying on high-level libraries</span>.</p>
+    </div>
 
-<h2>Key Techniques</h2>
-<ul>
-  <li>Fundamental NumPy matrix operations and vectorization</li>
-  <li>Dissecting and implementing Linear & Logistic Regression from scratch</li>
-  <li>L1 (Lasso) and L2 (Ridge) Regularization implementation</li>
-  <li>Decision Trees implementation with mathematical foundations</li>
-  <li>Unit and integration testing for algorithmic correctness</li>
-</ul>
+    <h2>🎯 The "Why"</h2>
+    <p>Before trusting any ML framework, you must understand what's happening inside the matrix multiplications. This project strips machine learning down to its core — building Linear Regression, Logistic Regression, L1/L2 Regularization, and Decision Trees entirely from scratch. Every algorithm is accompanied by comprehensive unit and integration tests to ensure mathematical correctness, not just "it ran without errors."</p>
 
-<h2>Links</h2>
-<ul>
-  <li><a href="https://github.com/RikiSTM/numpy-ml-from-scratch">Source Code (GitHub)</a></li>
-  <li><a href="https://rikistm.github.io/numpy-ml-from-scratch/">Portfolio</a></li>
-</ul>
+    <h2>🛠️ Core Algorithms</h2>
+    <div class="card">
+        <ul>
+            <li><strong>Linear Regression (from scratch):</strong> Built via closed-form normal equation and gradient descent — vectorized with pure NumPy matrix operations.</li>
+            <li><strong>Logistic Regression (from scratch):</strong> Sigmoid activation, binary cross-entropy loss, and gradient computation implemented without <code>sklearn</code>.</li>
+            <li><strong>L1 (Lasso) &amp; L2 (Ridge) Regularization:</strong> Demonstrated how each penalty term reshapes the loss landscape — sparsity vs. shrinkage.</li>
+            <li><strong>Decision Trees:</strong> Recursive splitting with Gini impurity and information gain, built on explicit mathematical foundations rather than library calls.</li>
+            <li><strong>Data Pipeline Rigor:</strong> Strict <code>label_map</code> consistency and vectorized I/O — no silent index-mismatch bugs during training.</li>
+        </ul>
+    </div>
+
+    <h2>💡 Design Philosophy</h2>
+    <div class="card">
+        <h3>1. Understand the Math, Not the API</h3>
+        <p>Every <code>fit()</code> call in a framework is a black box. Writing gradient descent, sigmoid, and regularization from scratch reveals <em>why</em> hyperparameters matter — not just that they exist.</p>
+    </div>
+    <div class="card">
+        <h3>2. Tests Are the Spec</h3>
+        <p>Unit and integration tests double as documentation. If the gradient matches the numerical gradient to within tolerance, the math is correct — even when the model "looks fine" on a loss curve.</p>
+    </div>
+    <div class="card">
+        <h3>3. Vectorization = Correctness + Speed</h3>
+        <p>Every algorithm uses matrix operations where possible. Pure Python loops are not just slow — they hide bugs that <code>@</code> operator broadcasting makes explicit.</p>
+    </div>
+
+    <h2>🔗 Links</h2>
+    <p>
+        <a href="https://github.com/RikiSTM/numpy-ml-from-scratch" target="_blank" rel="noopener">➡️ View Source Code on GitHub</a><br>
+        <a href="https://rikistm.github.io/" target="_blank" rel="noopener">📄 Portfolio Page</a><br>
+        <a href="https://www.linkedin.com/in/riki-sutiaman-ai-engineer/" target="_blank" rel="noopener">👤 Connect on LinkedIn</a>
+    </p>
+</div>
+
 </body>
 </html>
